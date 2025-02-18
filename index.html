@@ -1,52 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>LKXN</title>
-        <style>
-            body{
-                background-color: #fff;
-            }
-            #main{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 90vh;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            a{
-                color: white;
-            }
-            #title {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-            #footer {
-                align-self: center;
-                background-color: #333;
-                color: #fff;
-                padding: 5px;
-                text-align: center;
-            }
-        </style>
-    </head>
-<body>
-    <div id="main">
-        <div id="title">
-            <h1>This is LKXN</h1>
-        </div>
-        <div id="content">
-            <p>this is a demo website</p> 
-        </div>
-        <div id="footer">
-            <a href="https://somerui.xyz/" target="_blank">friend's site
-            </a>
-            <a href="https://x.com/lkxn136466" target="_blank">X</a>
-        </div>
-    </div>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKXN</title>
+    <style>
+        :root {
+            --primary: #87527B;
+            --on-primary: #F4B2E2;
+            --surface: #4F444A;
+            --surface-container: #F3EDF7;
+            --outline: #79747E;
+            --radius-full: 999px;
+            --radius-md: 16px;
+        }
 
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary: #F4B2E2;
+                --on-primary: #4F444A;
+                --surface: #87527B;
+                --surface-container: #211F26;
+                --outline: #938F99;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-image: url('108252240_p0.jpg') ;
+            background-size: 100% 100%;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--surface);
+            color: var(--on-primary-container);
+            min-height: 100vh;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background-color: var(--surface-container);
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+        }
+
+        .nav-title {
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-left: 12px;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background-color: var(--primary);
+            color: var(--on-primary);
+            padding: 20px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .card {
+            background-color: var(--surface-container);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--on-primary);
+            border-radius: var(--radius-full);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        :root {
+            /* 新增透明度相关变量 */
+            --glass-opacity: 0.6;          /* 毛玻璃透明度 */
+            --glass-blur: 16px;           /* 模糊程度 */
+            --surface-container: #F3EDF7; /* 原始表面容器颜色 */
+            --surface-container-rgb: 243,237,247; /* 分解RGB值用于rgba */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --surface-container: #211F26;
+                --surface-container-rgb: 33,31,38; /* 深色模式RGB值 */
+            }
+        }
+
+        /* 卡片组件 - 毛玻璃版本 */
+        .card {
+            /* 背景设置 */
+            background-color: rgba(
+                var(--surface-container-rgb), 
+                var(--glass-opacity)
+            ); /* 使用rgba实现透明度 */
+            
+            /* 毛玻璃效果 */
+            backdrop-filter: blur(var(--glass-blur));       /* 标准属性 */
+            -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari支持 */
+            
+            /* 视觉增强 */
+            border: 1px solid rgba(var(--surface-container-rgb), 0.2); /* 半透明边框 */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 多层阴影增强立体感 */
+            
+            /* 原有样式保留 */
+            padding: 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            transition: all 0.3s ease; /* 添加过渡动画 */
+        }
+
+        /* 卡片悬停效果增强 */
+        .card:hover {
+            transform: translateY(-4px); /* 添加悬停位移 */
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15), /* 外层阴影 */
+                inset 0 0 0 1px rgba(255,255,255,0.1); /* 内发光效果 */
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <span class="nav-title">This is LKXN</span>
+    </nav>
+
+    <main class="grid">
+        <div class="card">
+            <h2>My Twitter</h2>
+                <p>Click the botton to visit RuiHub.</p >
+            <button class="button" style="margin-top: 12px;" onclick="window.location.href='https://x.com/lkxn136466?s=21';">Go →</button>
+        </div>
+
+        <div class="card">
+            <h2>RuiHub</h2>
+            <p>Click the botton to visit RuiHub.</p >
+                <button class="button" style="margin-top: 12px;" onclick="window.location.href='https://somerui.xyz';">Go →</button>
+        </div>
+    </main>
+
+    <div class="fab">+</div>
+
+    <script>
+        // 动态颜色切换示例
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        prefersDark.addEventListener('change', (e) => {
+            document.body.classList.toggle('dark-mode', e.matches);
+        });
+
+        // 悬浮按钮交互
+        document.querySelector('.fab').addEventListener('click', () => {
+            alert('悬浮按钮被点击！');
+        });
+    </script>
 </body>
 </html>
