@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,7 @@
         body {
             margin: 0;
             padding: 20px;
-            background-image: url('108252240_p0.jpg') ;
+            background-image: url('108252240_p0.jpg');
             background-size: 100% 100%;
             font-family: 'Roboto', sans-serif;
             background-color: var(--surface);
@@ -65,7 +66,7 @@
             color: var(--on-primary);
             padding: 20px;
             border-radius: var(--radius-full);
-            box-shadow: 5px 5px 9px rgba(0,0,0,0.61);
+            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61);
             cursor: pointer;
             transition: transform 0.2s;
         }
@@ -83,7 +84,7 @@
         }
 
         .card:hover {
-            box-shadow: 5px 5px 9px rgba(0,0,0,0.61);
+            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61);
         }
 
         .button {
@@ -104,54 +105,149 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 16px;
         }
+
         :root {
             /* 新增透明度相关变量 */
-            --glass-opacity: 0.6;          /* 毛玻璃透明度 */
-            --glass-blur: 16px;           /* 模糊程度 */
-            --surface-container: #F3EDF7; /* 原始表面容器颜色 */
-            --surface-container-rgb: 243,237,247; /* 分解RGB值用于rgba */
+            --glass-opacity: 0.4;
+            /* 毛玻璃透明度 */
+            --glass-blur: 16px;
+            /* 模糊程度 */
+            --surface-container: #F3EDF7;
+            /* 原始表面容器颜色 */
+            --surface-container-rgb: 243, 237, 247;
+            /* 分解RGB值用于rgba */
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
                 --surface-container: #211F26;
-                --surface-container-rgb: 33,31,38; /* 深色模式RGB值 */
+                --surface-container-rgb: 33, 31, 38;
+                /* 深色模式RGB值 */
             }
         }
 
         /* 卡片组件 - 毛玻璃版本 */
         .card {
             /* 背景设置 */
-            background-color: rgba(
-                var(--surface-container-rgb), 
-                var(--glass-opacity)
-            ); /* 使用rgba实现透明度 */
-            
+            background-color: rgba(var(--surface-container-rgb),
+                    var(--glass-opacity));
+            /* 使用rgba实现透明度 */
+
             /* 毛玻璃效果 */
-            backdrop-filter: blur(var(--glass-blur));       /* 标准属性 */
-            -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari支持 */
-            
+            backdrop-filter: blur(var(--glass-blur));
+            /* 标准属性 */
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            /* Safari支持 */
+
             /* 视觉增强 */
-            border: 1px solid rgba(var(--surface-container-rgb), 0.2); /* 半透明边框 */
-            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61); /* 多层阴影增强立体感 */
-            
+            border: 1px solid rgba(var(--surface-container-rgb), 0.2);
+            /* 半透明边框 */
+            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61);
+            /* 多层阴影增强立体感 */
+
             /* 原有样式保留 */
             padding: 24px;
             border-radius: var(--radius-md);
             margin-bottom: 16px;
-            transition: all 0.3s ease; /* 添加过渡动画 */
+            transition: all 0.3s ease;
+            /* 添加过渡动画 */
         }
 
         /* 卡片悬停效果增强 */
         .card:hover {
-            transform: translateY(-4px); /* 添加悬停位移 */
-            box-shadow: 
-                5px 5px 9px rgba(0, 0, 0, 0.61), /* 外层阴影 */
-                inset 0 0 0 1px rgba(255,255,255,0.1); /* 内发光效果 */
+            transform: translateY(-4px);
+            /* 添加悬停位移 */
+            box-shadow:
+                5px 5px 9px rgba(0, 0, 0, 0.61),
+                /* 外层阴影 */
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            /* 内发光效果 */
         }
 
+        /* 设置卡片容器的大小和居中 */
+        .card-flip {
+            perspective: 1000px;
+            width: 300px;
+            height: 400px;
+            margin: 50px auto;
+            border-radius: 16px;
+            /* 添加圆角 */
+            /* 
+     overflow: hidden; 
+    防止圆角被裁剪 */
+        }
+
+        /* 翻转动画容器 */
+        .card-flip-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+        }
+
+        /* 鼠标悬浮时，触发翻转效果 */
+        .card-flip:hover .card-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* 卡片正面和背面 */
+        .card-flip-front,
+        .card-flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            /* 添加圆角 */
+        }
+
+        /* 毛玻璃效果（卡片正面） */
+        .card-flip-front {
+            background: rgba(var(--surface-container-rgb), var(--glass-opacity));
+            /* 半透明背景 */
+            backdrop-filter: blur(var(--glass-blur));
+            /* 模糊效果 */
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            /* Safari 兼容 */
+            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61);
+        }
+
+        /* 背面卡片 */
+        .card-flip-back {
+            background: rgba(var(--surface-container-rgb), var(--glass-opacity));
+            /* 透明度 */
+            backdrop-filter: blur(var(--glass-blur));
+            /* 毛玻璃效果 */
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            /* Safari兼容 */
+            transform: rotateY(180deg);
+            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61);
+        }
+
+        /* 图片样式 */
+        .image-flip-container {
+            width: 50%;
+            height: 70%;
+            overflow: hidden;
+        }
+
+        .card-flip-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 隐藏正面的文字 */
+        .card-flip-front .card-flip-text {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
     <nav class="card">
         <span class="nav-title" style="text-align: center;">This is LKXN</span>
@@ -160,21 +256,42 @@
     <main class="grid">
         <div class="card">
             <h2 class="text">My Twitter</h2>
-                <p class="text">Click the botton to visit my twitter.</p >
-            <button class="fab" style="margin-top: 12PX;" onclick="window.location.href='https://x.com/lkxn136466?s=21';">Go →</button>
+            <p class="text">Click the botton to visit my twitter.</p>
+            <button class="fab" style="margin-top: 12PX;"
+                onclick="window.location.href='https://x.com/lkxn136466?s=21';">Go →</button>
         </div>
 
         <div class="card">
-            <h2 class="text">RuiHub</h2>
-            <p class="text">Click the botton to visit RuiHub.</p >
-                <button class="fab" style="margin-top: 12px;" onclick="window.location.href='https://somerui.xyz';">Go →</button>
+            <h2 class="text">RuiSite</h2>
+            <p class="text">Click the botton to visit RuiSite.</p>
+            <button class="fab" style="margin-top: 12px;" onclick="window.location.href='https://somerui.xyz';">Go
+                →</button>
+        </div>
+
+        <!-- 卡片容器 -->
+        <div class="card-flip">
+            <div class="card-flip-inner">
+                <div class="card-flip-front">
+                    <div class="image-flip-container">
+                        <H1 class="text">SUPPORT ME</H1>
+                        <P class="text"> Hover your cursor over the card to view the Support Me QR.</P>
+                    </div>
+                    <div class="card-flip-text">
+                    </div>
+                </div>
+                <div class="card-flip-back">
+                    <div class="image-flip-container">
+                        <img src="IWANTCASH.jpg" alt="I WANT CASH!!!!!" class="card-flip-image">
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <script>
         // 动态颜色切换示例
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-        
+
         prefersDark.addEventListener('change', (e) => {
             document.body.classList.toggle('dark-mode', e.matches);
         });
@@ -182,4 +299,5 @@
 
     </script>
 </body>
+
 </html>
