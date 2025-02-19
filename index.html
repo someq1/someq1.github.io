@@ -6,8 +6,8 @@
     <title>LKXN</title>
     <style>
         :root {
-            --primary: #87527B;
-            --on-primary: #F4B2E2;
+            --primary: #f4b2e2;
+            --on-primary: #87527B;
             --surface: #4F444A;
             --surface-container: #F3EDF7;
             --outline: #79747E;
@@ -17,8 +17,8 @@
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --primary: #F4B2E2;
-                --on-primary: #4F444A;
+                --primary: #87527B;
+                --on-primary: #f4b2e2;
                 --surface: #87527B;
                 --surface-container: #211F26;
                 --outline: #938F99;
@@ -48,8 +48,13 @@
         .nav-title {
             font-size: 22px;
             font-weight: 500;
-            color: var(--primary);
+            color: var(--on-primary);
             text-align: center;
+        }
+
+
+        .text {
+            color: var(--on-primary);
         }
 
         .fab {
@@ -60,7 +65,7 @@
             color: var(--on-primary);
             padding: 20px;
             border-radius: var(--radius-full);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 5px 5px 9px rgba(0,0,0,0.61);
             cursor: pointer;
             transition: transform 0.2s;
         }
@@ -78,7 +83,7 @@
         }
 
         .card:hover {
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 5px 5px 9px rgba(0,0,0,0.61);
         }
 
         .button {
@@ -128,7 +133,7 @@
             
             /* 视觉增强 */
             border: 1px solid rgba(var(--surface-container-rgb), 0.2); /* 半透明边框 */
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 多层阴影增强立体感 */
+            box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.61); /* 多层阴影增强立体感 */
             
             /* 原有样式保留 */
             padding: 24px;
@@ -141,7 +146,7 @@
         .card:hover {
             transform: translateY(-4px); /* 添加悬停位移 */
             box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.15), /* 外层阴影 */
+                5px 5px 9px rgba(0, 0, 0, 0.61), /* 外层阴影 */
                 inset 0 0 0 1px rgba(255,255,255,0.1); /* 内发光效果 */
         }
 
@@ -149,19 +154,19 @@
 </head>
 <body>
     <nav class="card">
-        <span class="nav-title" style="margin-left: 50%;">This is LKXN</span>
+        <span class="nav-title" style="text-align: center;">This is LKXN</span>
     </nav>
 
     <main class="grid">
         <div class="card">
-            <h2>My Twitter</h2>
-                <p>Click the botton to visit my twitter.</p >
-            <button class="fab" style="margin-top: 12px;" onclick="window.location.href='https://x.com/lkxn136466?s=21';">Go →</button>
+            <h2 class="text">My Twitter</h2>
+                <p class="text">Click the botton to visit my twitter.</p >
+            <button class="fab" style="margin-top: 12PX;" onclick="window.location.href='https://x.com/lkxn136466?s=21';">Go →</button>
         </div>
 
         <div class="card">
-            <h2>RuiHub</h2>
-            <p>Click the botton to visit RuiHub.</p >
+            <h2 class="text">RuiHub</h2>
+            <p class="text">Click the botton to visit RuiHub.</p >
                 <button class="fab" style="margin-top: 12px;" onclick="window.location.href='https://somerui.xyz';">Go →</button>
         </div>
     </main>
