@@ -37,12 +37,17 @@
         body {
             margin: 0;
             padding: 20px;
-            background-image: url('108252240_p0.jpg');
+            background-image: url('IWANTCASH.jpg');
             background-size: 100% 100%;
             font-family: 'Roboto', sans-serif;
             background-color: var(--surface);
             color: var(--on-primary-container);
             min-height: 100vh;
+            position: relative;
+        }
+        body{
+            overflow: hidden;
+            height: 100%;
         }
 
         .nav {
@@ -216,7 +221,8 @@
 
         /* 毛玻璃效果（卡片正面） */
         .card-flip-front {
-            background: rgba(var(--surface-container-rgb), var(--glass-opacity));
+            background-color: rgba(var(--surface-container-rgb),
+            var(--glass-opacity));
             /* 半透明背景 */
             backdrop-filter: blur(var(--glass-blur));
             /* 模糊效果 */
@@ -259,7 +265,7 @@
 
 <body>
     <nav class="card">
-        <span class="nav-title" style="text-align: center;">This is LKXN</span>
+        <span class="nav-title"  style="padding:50%";>LKXN</span>
     </nav>
 
     <main class="grid">
@@ -268,6 +274,13 @@
             <p class="text">Click the botton to visit my twitter.</p>
             <button class="fab" style="margin-top: 12PX;"
                 onclick="window.location.href='https://x.com/lkxn136466?s=21';">Go →</button>
+        </div>
+
+        <div class="card">
+            <h2 class="text">My Minecraft Realms</h2>
+            <p class="text">Click the botton to visit My Minecraft Realms.</p>
+            <button class="fab" style="margin-top: 12px;" onclick="window.location.href='keycraft.somerui.xyz';">Go
+                →</button>
         </div>
 
         <div class="card">
